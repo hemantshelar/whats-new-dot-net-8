@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
+using whats_new_dot_net_8.Models;
 
 namespace whats_new_dot_net_8.Controllers
 {
 	[ApiController]
-	[Route("[controller]")]
+	[Route("[controller]/[action]")]
 	public class WeatherForecastController : ControllerBase
 	{
 		private static readonly string[] Summaries = new[]
@@ -28,6 +29,13 @@ namespace whats_new_dot_net_8.Controllers
 				Summary = Summaries[Random.Shared.Next(Summaries.Length)]
 			})
 			.ToArray();
+		}
+
+		[HttpGet(Name = "GetProduct")]
+		public IActionResult GetProduct()
+		{
+			var product = new Product(1, "Product 1");
+			return Ok(product);
 		}
 	}
 }
